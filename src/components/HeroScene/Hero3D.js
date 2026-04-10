@@ -113,7 +113,7 @@ function CircularParticles({ count = 10000 }) {
     // Responsive Camera and Horizontal Balancing
     const isMobile = state.size.width < 768;
     const cameraZ = isMobile ? 15 : 10;
-    const cameraY = isMobile ? 2.5 : 0;
+    const cameraY = isMobile ? 2.5 : -1; /* Shifted down to push particles up */
     const sceneX = isMobile ? 0 : 2.5; /* Particles on right, slightly closer to center */
     
     state.camera.position.z = THREE.MathUtils.lerp(state.camera.position.z, cameraZ, 0.05);
