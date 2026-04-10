@@ -33,7 +33,7 @@ export default function ServicesPage() {
       id: 'receptionist',
       label: 'Voice AI',
       title: 'Precision AI Receptionist',
-      imagePath: '/images/services/receptionist.jpg',
+      imagePath: '/images/services/receptionist.png',
       desc: 'Transform your customer experience with an AI that sounds human, understands context, and executes tasks. Our voice agents handle calls site-wide with 99.8% accuracy.',
       features: ['Natural Language Processing', 'Real-time Calendar Integration', 'Instant Lead Escalation']
     },

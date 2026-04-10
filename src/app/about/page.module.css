@@ -151,7 +151,7 @@
 
 .ctaTitle {
   font-family: var(--font-display);
-  font-size: 4rem;
+  font-size: clamp(2rem, 10vw, 4rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   margin-bottom: var(--space-2xl);
@@ -160,16 +160,19 @@
 @media (max-width: 1000px) {
   .split {
     grid-template-columns: 1fr;
-    gap: var(--space-3xl);
+    gap: var(--space-20);
     text-align: center;
+    padding-top: var(--space-8);
   }
 
   .desc {
-    margin: 0 auto var(--space-xl);
+    margin: 0 auto var(--space-6);
   }
 
   .statsRow {
     justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-8);
   }
 
   .visual {
@@ -179,7 +182,7 @@
 
   .valuesGrid {
     grid-template-columns: 1fr;
-    gap: var(--space-xl);
+    gap: var(--space-8);
   }
 
   .valuesGrid>div:nth-child(even) {
@@ -187,6 +190,22 @@
   }
 
   .ctaTitle {
-    font-size: 3rem;
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .statsRow {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+  }
+  
+  .statItem {
+    align-items: center;
+  }
+
+  .valueCard {
+    padding: var(--space-8);
   }
 }

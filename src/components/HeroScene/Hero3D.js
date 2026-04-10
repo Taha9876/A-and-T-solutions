@@ -5,7 +5,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 /* ─── WebGL Particle Text Morphing Utilities ─── */
-const getTextTargets = (text, count) => {
+const getTextTargets = (text, count, centered = false) => {
   if (typeof document === 'undefined') return new Float32Array(count * 3);
 
   const canvas = document.createElement('canvas');
@@ -31,7 +31,9 @@ const getTextTargets = (text, count) => {
     for (let x = 0; x < 1000; x++) {
       const alpha = imgData[(y * 1000 + x) * 4 + 3];
       if (alpha > 40) {
-        const dx = (((x / 1000) - 0.5) * 8.0) + 3.2;
+        // Desktop default is shifted right (+3.2) to not overlap hero text
+        // Mobile/Small screen should be centered (0)
+        const dx = centered ? ((x / 1000) - 0.5) * 8.0 : (((x / 1000) - 0.5) * 8.0) + 3.2;
         const dy = -(((y / 250) - 0.5) * 2.5);
         validPixels.push({ x: dx, y: dy });
       }
@@ -62,9 +64,12 @@ function CircularParticles({ count = 10000 }) {
   const _textColor = useMemo(() => new THREE.Color(), []);
 
   const system = useMemo(() => {
-    const tA = getTextTargets('A&T SOLUTIONS', count);
-    const tB = getTextTargets('24/7 AVAILABILITY', count);
-    const tC = getTextTargets('NO MISSED CALLS', count);
+    // Standard check during initialization
+    const isSmall = typeof window !== 'undefined' && window.innerWidth < 1024;
+    
+    const tA = getTextTargets('A&T SOLUTIONS', count, isSmall);
+    const tB = getTextTargets('24/7 AVAILABILITY', count, isSmall);
+    const tC = getTextTargets('NO MISSED CALLS', count, isSmall);
 
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
@@ -104,6 +109,15 @@ function CircularParticles({ count = 10000 }) {
     const tCycle = t % phaseDuration;
     const phaseIndex = Math.floor((t % (phaseDuration * 3)) / phaseDuration) % 3;
     const currentTarget = targets[phaseIndex];
+
+    // Responsive Camera and Vertical Positioning
+    const isMobile = state.size.width < 768;
+    const cameraZ = isMobile ? 15 : 10;
+    const cameraY = isMobile ? 2.5 : -1;
+    
+    state.camera.position.z = THREE.MathUtils.lerp(state.camera.position.z, cameraZ, 0.05);
+    state.camera.position.y = THREE.MathUtils.lerp(state.camera.position.y, cameraY, 0.05);
+    state.camera.updateProjectionMatrix();
 
     let masterAssembly = 0;
     let masterDissolve = 0;
@@ -149,7 +163,6 @@ function CircularParticles({ count = 10000 }) {
       geoPos[i3 + 2] = swirlZ + (tz - swirlZ) * localP;
 
       // --- Unified Professional Color Sync ---
-      // All particles share the same instantaneous hue for a cohesive, premium feel
       const themeHue = (t * 0.05 + 0.58) % 1;
 
       _baseColor.setHSL(themeHue, 0.9, 0.4);

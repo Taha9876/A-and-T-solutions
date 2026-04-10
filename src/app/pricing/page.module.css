@@ -35,7 +35,7 @@
 }
 
 .title {
-  font-size: clamp(3rem, 7vw, 5rem);
+  font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1.1;
@@ -201,7 +201,7 @@
 }
 
 .price {
-  font-size: 4rem;
+  font-size: clamp(3rem, 12vw, 4rem);
   font-weight: 800;
   color: var(--text-primary);
   letter-spacing: -0.05em;
@@ -287,5 +287,24 @@
     grid-template-columns: 1fr;
     max-width: 500px;
     margin: 0 auto;
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    margin-bottom: var(--space-12);
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .card {
+    padding: var(--space-8) var(--space-4);
   }
 }

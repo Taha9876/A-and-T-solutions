@@ -100,14 +100,27 @@ export default function Home() {
 
   /* ── High Profile GSAP Animations ── */
   useEffect(() => {
-    const ctx = gsap.context(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add({
+      isDesktop: `(min-width: 1024px)`,
+      isMobile: `(max-width: 1023px)`
+    }, (context) => {
+      const { isDesktop } = context.conditions;
+
       // Helper for high-end reveal
       const cinematicReveal = (target, trigger, delay = 0) => {
         gsap.fromTo(target,
-          { y: 60, opacity: 0, filter: 'blur(10px)', scale: 0.95, rotationX: 10 },
+          { 
+            y: isDesktop ? 60 : 30, 
+            opacity: 0, 
+            filter: isDesktop ? 'blur(10px)' : 'none', 
+            scale: isDesktop ? 0.95 : 1, 
+            rotationX: isDesktop ? 10 : 0 
+          },
           {
-            y: 0, opacity: 1, filter: 'blur(0px)', scale: 1, rotationX: 0,
-            duration: 1.2,
+            y: 0, opacity: 1, filter: 'none', scale: 1, rotationX: 0,
+            duration: isDesktop ? 1.2 : 0.8,
             ease: 'power3.out',
             stagger: 0.15,
             delay,
@@ -120,12 +133,12 @@ export default function Home() {
       const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
       heroTl
         .fromTo(`.${styles.heroBadge}`,
-          { y: 30, opacity: 0, filter: 'blur(10px)', scale: 0.8 },
-          { y: 0, opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1, delay: 0.2 }
+          { y: 30, opacity: 0, filter: isDesktop ? 'blur(10px)' : 'none', scale: 0.8 },
+          { y: 0, opacity: 1, filter: 'none', scale: 1, duration: 1, delay: 0.2 }
         )
         .fromTo(`.${styles.heroTitle}`,
-          { y: 50, opacity: 0, filter: 'blur(10px)' },
-          { y: 0, opacity: 1, filter: 'blur(0px)', duration: 1.2 }, '-=0.6'
+          { y: isDesktop ? 50 : 30, opacity: 0, filter: isDesktop ? 'blur(10px)' : 'none' },
+          { y: 0, opacity: 1, filter: 'none', duration: 1.2 }, '-=0.6'
         )
         .fromTo(`.${styles.heroDesc}`,
           { y: 30, opacity: 0 },
@@ -154,16 +167,16 @@ export default function Home() {
 
       // CTA distinct reveal
       gsap.fromTo(`.${styles.ctaContent}`,
-        { y: 80, opacity: 0, filter: 'blur(15px)', scale: 0.9 },
+        { y: 80, opacity: 0, filter: isDesktop ? 'blur(15px)' : 'none', scale: 0.9 },
         {
-          y: 0, opacity: 1, filter: 'blur(0px)', scale: 1,
+          y: 0, opacity: 1, filter: 'none', scale: 1,
           duration: 1.5, ease: 'expo.out',
           scrollTrigger: { trigger: `.${styles.ctaSection}`, start: 'top 80%' }
         }
       );
+    });
 
-    }, mainRef);
-    return () => ctx.revert();
+    return () => mm.revert();
   }, []);
 
   // Auto rotate testimonials
