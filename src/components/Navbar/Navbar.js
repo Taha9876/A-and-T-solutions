@@ -16,78 +16,84 @@ const navLinks = [
 export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
+  // Close menu on route change
+  useEffect(() => { setOpen(false); }, [pathname]);
 
+  // Lock body scroll when menu open
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
-  }, [menuOpen]);
+  }, [open]);
 
   return (
-    <nav 
-      className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`} 
+    <header
+      className={`${styles.header} ${scrolled ? styles.headerScrolled : ''}`}
       suppressHydrationWarning
     >
-      <div className={styles.inner}>
-        <Link href="/" className={styles.logo}>
-          <span className={styles.logoA}>A</span>
-          <span className={styles.logoAmp}>&</span>
-          <span className={styles.logoT}>T</span>
-          <span className={styles.logoText}>Solutions</span>
+      <div className={styles.container}>
+        {/* Logo */}
+        <Link href="/" className={styles.logo} onClick={() => setOpen(false)}>
+          <span className={styles.logoMark}>A<span className={styles.logoAmp}>&</span>T</span>
+          <span className={styles.logoLabel}>Solutions</span>
         </Link>
 
-        {/* Universal Overlay System */}
-        <div 
-          className={`${styles.backdrop} ${menuOpen ? styles.backdropOpen : ''}`} 
-          onClick={() => setMenuOpen(false)}
-          suppressHydrationWarning
-        />
-
-        <div className={`${styles.links} ${menuOpen ? styles.linksOpen : ''}`}>
-          {navLinks.map((link, index) => (
+        {/* Desktop Nav */}
+        <nav className={styles.desktopNav}>
+          {navLinks.map((l) => (
             <Link
-              key={link.href}
-              href={link.href}
-              className={`${styles.link} ${pathname === link.href ? styles.active : ''}`}
-              style={{ '--i': index }}
-              suppressHydrationWarning
+              key={l.href}
+              href={l.href}
+              className={`${styles.navLink} ${pathname === l.href ? styles.navLinkActive : ''}`}
             >
-              {link.label}
+              {l.label}
             </Link>
           ))}
-          <div className={styles.mobileCtaWrap}>
-            <Link href="/contact" className={`btn btn-primary ${styles.navCta}`}>
-              Get a Demo
-            </Link>
-          </div>
-        </div>
+          <Link href="/contact" className={styles.cta}>Get a Demo</Link>
+        </nav>
 
+        {/* Mobile Toggle */}
         <button
-          className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ''}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          className={`${styles.burger} ${open ? styles.burgerOpen : ''}`}
+          onClick={() => setOpen((v) => !v)}
+          aria-label="Toggle navigation"
         >
           <span />
           <span />
           <span />
         </button>
       </div>
-    </nav>
+
+      {/* Mobile Overlay + Menu */}
+      {open && <div className={styles.overlay} onClick={() => setOpen(false)} />}
+      <nav className={`${styles.mobileNav} ${open ? styles.mobileNavOpen : ''}`}>
+        {navLinks.map((l, i) => (
+          <Link
+            key={l.href}
+            href={l.href}
+            className={`${styles.mobileLink} ${pathname === l.href ? styles.mobileLinkActive : ''}`}
+            style={{ transitionDelay: `${i * 0.06 + 0.1}s` }}
+            onClick={() => setOpen(false)}
+          >
+            {l.label}
+          </Link>
+        ))}
+        <Link
+          href="/contact"
+          className={styles.mobileCta}
+          style={{ transitionDelay: '0.45s' }}
+          onClick={() => setOpen(false)}
+        >
+          Get a Demo
+        </Link>
+      </nav>
+    </header>
   );
 }
