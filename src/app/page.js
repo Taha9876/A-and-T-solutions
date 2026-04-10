@@ -133,24 +133,24 @@ export default function Home() {
       const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
       heroTl
         .fromTo(`.${styles.heroBadge}`,
-          { y: 30, opacity: 0, filter: isDesktop ? 'blur(10px)' : 'none', scale: 0.8 },
-          { y: 0, opacity: 1, filter: 'none', scale: 1, duration: 1, delay: 0.2 }
+          { y: 20, opacity: 0, filter: isDesktop ? 'blur(10px)' : 'none', scale: 0.9 },
+          { y: 0, opacity: 1, filter: 'none', scale: 1, duration: 0.8, delay: 0.1 }
         )
         .fromTo(`.${styles.heroTitle}`,
-          { y: isDesktop ? 50 : 30, opacity: 0, filter: isDesktop ? 'blur(10px)' : 'none' },
-          { y: 0, opacity: 1, filter: 'none', duration: 1.2 }, '-=0.6'
+          { y: isDesktop ? 40 : 20, opacity: 0, filter: isDesktop ? 'blur(10px)' : 'none' },
+          { y: 0, opacity: 1, filter: 'none', duration: 1 }, '-=0.6'
         )
         .fromTo(`.${styles.heroDesc}`,
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1 }, '-=0.8'
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8 }, '-=0.7'
         )
         .fromTo(`.${styles.heroActions}`,
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1 }, '-=0.8'
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8 }, '-=0.7'
         )
         .fromTo(`.${styles.heroMeta} > *`,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8, stagger: 0.1 }, '-=0.6'
+          { y: 15, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, stagger: 0.08 }, '-=0.5'
         );
 
       // High profile reveals for sections
