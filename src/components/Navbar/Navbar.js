@@ -40,7 +40,10 @@ export default function Navbar() {
   }, [menuOpen]);
 
   return (
-    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
+    <nav 
+      className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`} 
+      suppressHydrationWarning
+    >
       <div className={styles.inner}>
         <Link href="/" className={styles.logo}>
           <span className={styles.logoA}>A</span>
@@ -49,9 +52,11 @@ export default function Navbar() {
           <span className={styles.logoText}>Solutions</span>
         </Link>
 
+        {/* Universal Overlay System */}
         <div 
           className={`${styles.backdrop} ${menuOpen ? styles.backdropOpen : ''}`} 
           onClick={() => setMenuOpen(false)}
+          suppressHydrationWarning
         />
 
         <div className={`${styles.links} ${menuOpen ? styles.linksOpen : ''}`}>
@@ -61,13 +66,16 @@ export default function Navbar() {
               href={link.href}
               className={`${styles.link} ${pathname === link.href ? styles.active : ''}`}
               style={{ '--i': index }}
+              suppressHydrationWarning
             >
               {link.label}
             </Link>
           ))}
-          <Link href="/contact" className={`btn btn-primary ${styles.navCta}`}>
-            Get a Demo
-          </Link>
+          <div className={styles.mobileCtaWrap}>
+            <Link href="/contact" className={`btn btn-primary ${styles.navCta}`}>
+              Get a Demo
+            </Link>
+          </div>
         </div>
 
         <button

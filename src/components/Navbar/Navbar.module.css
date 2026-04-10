@@ -18,7 +18,7 @@
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border-bottom: 1px solid var(--border);
-  height: 70px; /* Slight compression for professional feel */
+  height: 70px;
 }
 
 .inner {
@@ -40,7 +40,7 @@
   font-size: 1.25rem;
   color: var(--text-primary);
   text-decoration: none;
-  z-index: 1001;
+  z-index: 2001; /* Higher than backdrop */
   letter-spacing: -0.02em;
   animation: navItemReveal 0.8s var(--ease) forwards;
 }
@@ -59,7 +59,6 @@
   color: var(--color-main-light);
   margin: 0 1px;
   font-size: 1.0rem;
-  font-weight: 500;
 }
 
 .logoText {
@@ -74,7 +73,7 @@
 .links {
   display: flex;
   align-items: center;
-  gap: var(--space-2); /* Adjusted for pill effect */
+  gap: var(--space-2);
 }
 
 .link {
@@ -83,7 +82,7 @@
   color: var(--text-tertiary);
   text-decoration: none;
   position: relative;
-  padding: 8px 16px; /* Pill padding */
+  padding: 8px 16px;
   border-radius: 20px;
   transition: all 0.3s var(--ease);
   letter-spacing: -0.01em;
@@ -119,18 +118,13 @@
   opacity: 0.6;
 }
 
-.link:hover::after {
+.link:hover::after, .active::after {
   width: 12px;
 }
 
 .active {
   color: var(--text-primary);
-  background: rgba(var(--hue-base), 85%, 60%, 0.1);
-}
-
-.active::after {
-  width: 12px;
-  background: var(--color-main-light);
+  background: rgba(216, 112, 255, 0.1);
 }
 
 .navCta {
@@ -152,7 +146,23 @@
   transform: translateY(-1px);
 }
 
-/* Hamburger remains same but refined */
+/* Backdrop Overlay */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 1500;
+}
+
+.backdropOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -161,7 +171,7 @@
   border: none;
   cursor: pointer;
   padding: 8px;
-  z-index: 1001;
+  z-index: 2001; /* Above links and backdrop */
 }
 
 .hamburger span {
@@ -183,25 +193,17 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Backdrop Overlay */
-.backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-  z-index: 1500;
+/* RESPONSIVE DESIGN FOR "OTHER DEVICES" */
+
+/* Table Ports (iPad / Wide Tablets) - Keep Horizontal */
+@media (max-width: 1024px) {
+  .inner { padding: 0 var(--space-4); }
+  .link { padding: 8px 12px; }
+  .navCta { margin-left: var(--space-2); }
 }
 
-.backdropOpen {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-@media (max-width: 900px) {
+/* Small Tablets / Large Phones - Switch to Menu */
+@media (max-width: 820px) {
   .hamburger { display: flex; }
 
   .links {
@@ -210,9 +212,8 @@
     right: 0;
     bottom: 0;
     width: 320px;
-    background: rgba(10, 10, 12, 0.98); /* Increased Opacity */
+    background: rgba(10, 10, 12, 0.98);
     backdrop-filter: blur(40px) saturate(180%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
     flex-direction: column;
     justify-content: center;
     padding: var(--space-20) 40px;
@@ -221,23 +222,12 @@
     transition: transform 0.6s var(--ease);
     border-left: 1px solid var(--border);
     z-index: 2000;
-    pointer-events: none; /* Block when closed */
-  }
-
-  /* Full Screen on Mobile Phones */
-  @media (max-width: 640px) {
-    .links {
-      width: 100%;
-      border-left: none;
-      padding: var(--space-20) var(--space-8);
-      text-align: center;
-      align-items: center;
-    }
+    pointer-events: none;
   }
 
   .linksOpen {
     transform: translateX(0);
-    pointer-events: auto; /* Enable when open */
+    pointer-events: auto;
   }
 
   .link {
@@ -248,24 +238,21 @@
     opacity: 0;
     transform: translateX(30px);
     padding: 0;
-    border-radius: 0;
     background: none !important;
-    animation: none !important; 
+    animation: none !important;
     transition: all 0.5s var(--ease);
     transition-delay: calc(var(--i) * 0.1s + 0.2s);
-    pointer-events: auto;
   }
-
-  .link::after { display: none; }
 
   .linksOpen .link {
     opacity: 1;
     transform: translateX(0);
   }
 
+  .link::after { display: none; }
+
   .navCta {
     margin-left: 0;
-    margin-top: var(--space-4);
     padding: 14px 32px;
     font-size: 1rem;
     opacity: 0;
@@ -279,4 +266,17 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* True Mobile Phone HUD - Full Screen */
+@media (max-width: 600px) {
+  .links {
+    width: 100%;
+    border-left: none;
+    padding: var(--space-20) var(--space-8);
+    text-align: center;
+    align-items: center;
+  }
+  .link { font-size: 1.25rem; }
+  .logoText { display: none; } /* Focus on branding */
 }
