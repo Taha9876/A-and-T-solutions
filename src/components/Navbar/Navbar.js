@@ -50,11 +50,12 @@ export default function Navbar() {
         </Link>
 
         <div className={`${styles.links} ${menuOpen ? styles.linksOpen : ''}`}>
-          {navLinks.map((link) => (
+          {navLinks.map((link, index) => (
             <Link
               key={link.href}
               href={link.href}
               className={`${styles.link} ${pathname === link.href ? styles.active : ''}`}
+              style={{ '--i': index }}
             >
               {link.label}
             </Link>
