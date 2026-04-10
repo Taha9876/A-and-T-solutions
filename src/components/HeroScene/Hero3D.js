@@ -114,7 +114,7 @@ function CircularParticles({ count = 10000 }) {
     const isMobile = state.size.width < 768;
     const cameraZ = isMobile ? 15 : 10;
     const cameraY = isMobile ? 2.5 : 0;
-    const sceneX = isMobile ? 0 : -3.5; /* Push particles well left of hero text */
+    const sceneX = isMobile ? 0 : 3.5; /* Push particles to the RIGHT side */
     
     state.camera.position.z = THREE.MathUtils.lerp(state.camera.position.z, cameraZ, 0.05);
     state.camera.position.y = THREE.MathUtils.lerp(state.camera.position.y, cameraY, 0.05);

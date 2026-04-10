@@ -83,7 +83,7 @@
   margin: 0 auto;
   padding: var(--space-32) var(--space-6) var(--space-20);
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start; /* Text on LEFT */
   align-items: center;
   pointer-events: none;
 }
