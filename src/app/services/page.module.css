@@ -352,38 +352,73 @@
 @media (max-width: 900px) {
   .serviceSection {
     gap: 30px;
-    padding: 40px 30px;
+    padding: 40px 24px;
   }
   .serviceVisual {
-    height: 350px;
+    height: 320px;
+  }
+  .serviceCardTitle {
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+  }
+  .serviceCardDesc {
+    font-size: 0.95rem;
+  }
+  .header {
+    margin-bottom: 80px;
+  }
+  .configContainer {
+    padding: 40px 24px;
+    gap: 60px;
   }
 }
 
 @media (max-width: 640px) {
+  .main {
+    padding-top: calc(var(--nav-h) + var(--space-16));
+  }
   .header {
-    margin-bottom: 60px;
+    margin-bottom: 48px;
+    padding: 0 var(--space-4);
+  }
+  .title {
+    font-size: clamp(1.8rem, 8vw, 2.8rem);
+  }
+  .subtitle {
+    font-size: 1rem;
   }
   .serviceSection {
     flex-direction: column !important;
-    gap: 32px;
-    padding: 40px 20px;
+    gap: 24px;
+    padding: 32px 16px;
     text-align: center;
   }
   .serviceVisual {
     width: 100%;
-    height: 300px;
+    height: 240px;
+  }
+  .serviceCardTitle {
+    font-size: 1.3rem;
+  }
+  .serviceCardDesc {
+    font-size: 0.9rem;
   }
   .featureList li {
     justify-content: center;
+    font-size: 0.85rem;
   }
   .optionsGrid {
     grid-template-columns: 1fr;
   }
   .configContainer {
-    padding: 30px;
+    padding: 24px 16px;
+    gap: 40px;
   }
   .deploySection {
     flex-direction: column;
     align-items: flex-start;
+    padding: 24px;
+  }
+  .servicesContainer {
+    margin-bottom: 60px;
   }
 }

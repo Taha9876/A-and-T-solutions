@@ -254,7 +254,7 @@
   }
 
   .formSide {
-    padding: var(--space-20) var(--space-8);
+    padding: var(--space-16) var(--space-8);
   }
 
   .title {
@@ -265,14 +265,30 @@
   .desc {
     text-align: center;
   }
+  
+  .header {
+    text-align: center;
+  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
+  .formSide {
+    padding: var(--space-12) var(--space-4);
+  }
+  
   .formWrap {
     padding: var(--space-8) var(--space-4);
   }
   
   .formRow {
     grid-template-columns: 1fr;
+  }
+  
+  .title {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+  }
+  
+  .submitBtn {
+    height: 56px !important;
   }
 }

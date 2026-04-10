@@ -651,6 +651,7 @@
   }
 
   .heroText {
+    grid-column: 1; /* Reset from desktop grid-column: 2 */
     max-width: 600px;
     margin: 0 auto;
   }
