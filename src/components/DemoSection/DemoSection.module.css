@@ -1,0 +1,170 @@
+.demo {
+  background: var(--bg-deep);
+  overflow: hidden;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4xl);
+  align-items: center;
+}
+
+/* Avatar visual */
+.visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rings {
+  position: absolute;
+  inset: 0;
+}
+
+.ring1,
+.ring2,
+.ring3 {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--cyan);
+}
+
+.ring1 {
+  inset: 0;
+  opacity: 0.1;
+  animation: spin 20s linear infinite;
+}
+
+.ring2 {
+  inset: 30px;
+  opacity: 0.15;
+  animation: spin 15s linear infinite reverse;
+  border-style: dashed;
+}
+
+.ring3 {
+  inset: 60px;
+  opacity: 0.2;
+  animation: spin 25s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.avatarCore {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--cyan-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 60px var(--cyan-dim), 0 0 120px rgba(0, 245, 255, 0.08);
+}
+
+.statusDot {
+  position: absolute;
+  top: 90px;
+  right: 90px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--success);
+  z-index: 2;
+  box-shadow: 0 0 12px rgba(0, 230, 118, 0.5);
+}
+
+.statusDot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--success);
+  animation: pulseRing 2s ease-out infinite;
+}
+
+/* Content */
+.content {
+  max-width: 520px;
+}
+
+.title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  margin-bottom: var(--space-lg);
+  margin-top: var(--space-md);
+}
+
+.ariaName {
+  color: var(--cyan);
+  font-style: italic;
+}
+
+.desc {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--white-50);
+  margin-bottom: var(--space-xl);
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.875rem;
+  color: var(--white-70);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 6px;
+  padding: 8px 16px;
+}
+
+.featureCheck {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-3xl);
+    text-align: center;
+  }
+
+  .visual {
+    order: -1;
+  }
+
+  .content {
+    max-width: none;
+  }
+
+  .features {
+    justify-content: center;
+  }
+
+  .avatar {
+    width: 260px;
+    height: 260px;
+  }
+}

@@ -1,0 +1,192 @@
+.main {
+  padding-top: calc(var(--nav-h) + var(--space-12));
+  background: radial-gradient(circle at bottom right, var(--color-main-dim) 0%, transparent 50%),
+    radial-gradient(circle at top left, rgba(123, 31, 162, 0.05) 0%, transparent 50%);
+  background-color: var(--bg);
+  min-height: 100vh;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-24);
+  align-items: center;
+  min-height: 60vh;
+  margin-bottom: var(--section-padding);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 7vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: var(--space-3) 0 var(--space-6);
+  color: #ffffff;
+}
+
+.desc {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-6);
+  max-width: 650px;
+  font-weight: 400;
+}
+
+.statsRow {
+  display: flex;
+  gap: var(--space-12);
+  margin-top: var(--space-16);
+  padding-top: var(--space-10);
+  border-top: 1px solid var(--border);
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.statVal {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #ffffff, #aaaaaa, #ffffff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+  margin-bottom: var(--space-2);
+}
+
+.statLabel {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.visual {
+  width: 100%;
+  aspect-ratio: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 50px var(--color-main-dim));
+}
+
+.valuesSection {
+  padding: var(--section-padding) 0;
+  border-top: 1px solid var(--border);
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+/* Dynamic Offset for Cards */
+.valuesGrid>div:nth-child(even) {
+  transform: translateY(40px);
+}
+
+.valueCard {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  padding: 48px;
+  border-radius: 8px;
+  backdrop-filter: blur(24px);
+  transition: all 0.4s var(--ease);
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+}
+
+.valueCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--color-main-light);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+}
+
+.valueIcon {
+  width: 56px;
+  height: 56px;
+  background: var(--color-main-dim);
+  color: var(--color-main-light);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: var(--space-xl);
+  border: 1px solid var(--color-main-light);
+}
+
+.valueCard h3 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  color: var(--white);
+}
+
+.valueCard p {
+  color: var(--white-70);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.ctaSection {
+  text-align: center;
+  padding: var(--section-padding) 0;
+  background: linear-gradient(to bottom, var(--bg), var(--bg-secondary));
+  border-top: 1px solid var(--border);
+}
+
+.ctaTitle {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: var(--space-2xl);
+}
+
+@media (max-width: 1000px) {
+  .split {
+    grid-template-columns: 1fr;
+    gap: var(--space-3xl);
+    text-align: center;
+  }
+
+  .desc {
+    margin: 0 auto var(--space-xl);
+  }
+
+  .statsRow {
+    justify-content: center;
+  }
+
+  .visual {
+    order: -1;
+    max-height: 400px;
+  }
+
+  .valuesGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .valuesGrid>div:nth-child(even) {
+    transform: none;
+  }
+
+  .ctaTitle {
+    font-size: 3rem;
+  }
+}

@@ -1,0 +1,29 @@
+.cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--cyan);
+  pointer-events: none;
+  z-index: 99999;
+  mix-blend-mode: screen;
+  will-change: transform;
+  box-shadow: 0 0 12px var(--cyan-glow);
+}
+
+.trail {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  pointer-events: none;
+  z-index: 99998;
+  will-change: transform;
+}
+
+@media (max-width: 900px), (hover: none) {
+  .cursor, .trail {
+    display: none;
+  }
+}

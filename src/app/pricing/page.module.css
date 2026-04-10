@@ -1,0 +1,291 @@
+.main {
+  padding-top: calc(var(--nav-h) + var(--space-20));
+  padding-bottom: var(--section-padding);
+  background: var(--bg);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.bgGlow {
+  position: absolute;
+  top: -10%;
+  left: 30%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, hsla(var(--hue-base), 85%, 60%, 0.1), transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-24);
+  position: relative;
+  z-index: 10;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: var(--color-main-dim);
+  border: 1px solid hsla(var(--hue-base), 85%, 60%, 0.2);
+  border-radius: 6px;
+  margin-bottom: var(--space-6);
+}
+
+.title {
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: var(--space-6);
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: var(--text-tertiary);
+  max-width: 600px;
+  margin: 0 auto var(--space-12);
+}
+
+.toggleWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding: 8px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.toggleLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color 0.3s;
+}
+
+.activeLabel {
+  color: var(--text-primary);
+}
+
+.toggleBtn {
+  width: 56px;
+  height: 28px;
+  background: var(--bg-hover);
+  border-radius: 6px;
+  position: relative;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.toggled {
+  background: var(--color-main-dark);
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 20px;
+  height: 20px;
+  background: var(--white);
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toggled .toggleThumb {
+  transform: translateX(28px);
+}
+
+.discount {
+  background: var(--color-main);
+  color: var(--white);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  margin-left: var(--space-2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  z-index: 10;
+  position: relative;
+}
+
+.card {
+  padding: var(--space-12) var(--space-8);
+  background: hsla(240, 10%, 4%, 0.6);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s ease;
+}
+
+.card:hover {
+  border-color: hsla(var(--hue-base), 85%, 60%, 0.3);
+  background: hsla(240, 10%, 6%, 0.8);
+  transform: translateY(-8px);
+}
+
+.popular {
+  border-color: var(--color-main);
+  box-shadow: 0 0 40px hsla(var(--hue-base), 85%, 60%, 0.08);
+}
+
+.popularBadge {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: var(--color-main);
+  color: var(--white);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.popularDot {
+  width: 6px;
+  height: 6px;
+  background: var(--white);
+  border-radius: 50%;
+  animation: pulse-glow 2s infinite;
+}
+
+.tierName {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-main-light);
+  margin-bottom: var(--space-2);
+}
+
+.planName {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.02em;
+}
+
+.planDesc {
+  font-size: 0.9375rem;
+  color: var(--text-tertiary);
+  line-height: 1.6;
+}
+
+.priceWrap {
+  margin: var(--space-10) 0;
+}
+
+.priceContainer {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-1);
+}
+
+.currency {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.price {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.priceText {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--white);
+}
+
+.period {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.billingNote {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: var(--space-2);
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, var(--border), transparent);
+  margin: var(--space-8) 0;
+}
+
+.featureList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-10);
+  flex-grow: 1;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+}
+
+.checkWrap {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-main-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-main-light);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.planBtn {
+  width: 100%;
+}
+
+.cardGlow {
+  position: absolute;
+  bottom: -20%;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: radial-gradient(circle at bottom, hsla(var(--hue-base), 85%, 60%, 0.05), transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.card:hover .cardGlow {
+  opacity: 1;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,342 @@
+.main {
+  padding-top: calc(var(--nav-h) + var(--space-24));
+  background-color: var(--bg);
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(216, 112, 255, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(0, 245, 255, 0.05) 0%, transparent 40%),
+    var(--bg);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 120px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin: 16px 0 24px;
+  color: var(--white);
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Service Sections Layout (Replacing Cards) */
+.servicesContainer {
+  margin-bottom: 120px;
+}
+
+.serviceSection {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  padding: 80px 60px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  margin-bottom: 40px;
+}
+
+.serviceSectionReverse {
+  flex-direction: row-reverse;
+}
+
+.serviceContent {
+  flex: 1;
+}
+
+.serviceVisual {
+  flex: 1;
+  height: 480px;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: calc(var(--radius-xl) - 4px);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.serviceVisual:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.serviceImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.serviceVisual:hover .serviceImage {
+  transform: scale(1.05);
+}
+
+.serviceLabel {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-main-light);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.serviceCardTitle {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.serviceCardDesc {
+  font-size: 1.1rem;
+  color: var(--white-70);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.featureList li {
+  font-size: 1rem;
+  color: var(--white-90);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.featureList li::before {
+  content: '✓';
+  color: var(--color-main-light);
+  font-weight: bold;
+}
+
+/* Configurator Master Layout */
+.configHeader {
+  text-align: center;
+  margin-bottom: 60px;
+  padding-top: 60px;
+}
+
+.configContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px;
+  padding-bottom: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+}
+
+.configSection {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 16px;
+}
+
+.sectionNumber {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-main-light);
+  letter-spacing: 2px;
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.optionCard {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 25px;
+  padding: 32px 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.optionCard:hover {
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.optionCardActive {
+  background: rgba(255,255,255,0.05);
+  border-color: var(--color-main-light);
+}
+
+.radioIndicator {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.3);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease;
+}
+
+.optionCardActive .radioIndicator {
+  border-color: var(--color-main-light);
+}
+
+.optionCardActive .radioIndicator::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--color-main-light);
+  border-radius: 50%;
+}
+
+.optionTitle {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+
+.optionDesc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Deploy Bar */
+.deploySection {
+  margin-top: 40px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.deployInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.deployTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.deployDesc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.deployDesc span {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.deployDesc .divider {
+  color: rgba(255,255,255,0.2);
+}
+
+.inputWrap {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.languageInput {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.languageInput:focus {
+  border-color: var(--color-main-light);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 15px rgba(216, 112, 255, 0.1);
+}
+
+@media (max-width: 1000px) {
+  .serviceSection {
+    flex-direction: column !important;
+    gap: 40px;
+    padding: 60px 0;
+  }
+  .optionsGrid {
+    grid-template-columns: 1fr;
+  }
+  .deploySection {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

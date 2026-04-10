@@ -1,0 +1,134 @@
+.testimonials {
+  background: var(--bg-surface);
+  overflow: hidden;
+}
+
+.carouselWrap {
+  overflow: hidden;
+  margin: 0 -16px;
+  padding: 0 16px;
+}
+
+.carousel {
+  display: flex;
+  gap: var(--space-lg);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: var(--space-md) 0;
+  -ms-overflow-style: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  flex: 0 0 380px;
+  scroll-snap-align: center;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: var(--space-xl);
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out);
+  opacity: 0.6;
+  transform: scale(0.95);
+}
+
+.cardActive {
+  opacity: 1;
+  transform: scale(1);
+  border-color: var(--gold-dim);
+  box-shadow: var(--shadow-glow-gold);
+}
+
+.card:hover {
+  opacity: 1;
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: var(--space-md);
+}
+
+.quote {
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: var(--white-70);
+  margin-bottom: var(--space-xl);
+  font-style: italic;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.authorAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan-dim), var(--gold-dim));
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  color: var(--cyan);
+}
+
+.authorName {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.authorRole {
+  font-size: 0.8125rem;
+  color: var(--white-50);
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--white-20);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.dotActive {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan-dim);
+}
+
+@media (max-width: 768px) {
+  .card {
+    flex: 0 0 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    flex: 0 0 85vw;
+  }
+}

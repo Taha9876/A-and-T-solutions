@@ -1,0 +1,116 @@
+.howItWorks {
+  background: var(--bg-surface);
+  overflow: hidden;
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2xl);
+  position: relative;
+  padding-top: var(--space-2xl);
+}
+
+.connector {
+  position: absolute;
+  top: 60px;
+  left: 10%;
+  width: 80%;
+  height: 4px;
+  z-index: 0;
+}
+
+.connectorLine {
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.numCircle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-deep);
+  border: 2px solid var(--cyan);
+  margin-bottom: var(--space-lg);
+  position: relative;
+  box-shadow: 0 0 30px var(--cyan-dim), inset 0 0 20px var(--cyan-dim);
+}
+
+.numCircle span {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--cyan);
+}
+
+.numCircle::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid var(--cyan);
+  opacity: 0.2;
+  animation: pulseRing 3s ease-out infinite;
+}
+
+.stepTitle {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: var(--space-sm);
+}
+
+.stepDesc {
+  font-size: 0.9375rem;
+  color: var(--white-50);
+  line-height: 1.7;
+  max-width: 280px;
+}
+
+@media (max-width: 768px) {
+  .timeline {
+    grid-template-columns: 1fr;
+    gap: var(--space-3xl);
+    padding-left: 48px;
+  }
+
+  .connector {
+    display: none;
+  }
+
+  .step {
+    align-items: flex-start;
+    text-align: left;
+    position: relative;
+  }
+
+  .step::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 72px;
+    bottom: -48px;
+    width: 1px;
+    background: var(--cyan-dim);
+  }
+
+  .step:last-child::before {
+    display: none;
+  }
+
+  .stepDesc {
+    max-width: none;
+  }
+}

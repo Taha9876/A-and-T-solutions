@@ -1,40 +1,182 @@
+/* ════════════════════════════════════════
+   A&T SOLUTIONS — PREMIUM DESIGN SYSTEM
+   Dynamic Color-Shift Theme
+   ════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ── Core Black Background ── */
+  --bg: #000000;
+  --bg-secondary: #050505;
+  --bg-card: #0A0A0C;
+  --bg-elevated: #0F0F12;
+  --bg-hover: #141418;
+
+  /* ── Dynamic Colors (Purple Theme) ── */
+  --hue-base: 270;
+  /* Elite Purple */
+  --color-main: hsl(var(--hue-base), 85%, 60%);
+  --color-main-light: hsl(var(--hue-base), 85%, 75%);
+  --color-main-dark: hsl(var(--hue-base), 85%, 45%);
+  --color-accent: hsl(290, 90%, 65%);
+  --color-main-dim: hsla(var(--hue-base), 85%, 60%, 0.15);
+
+  /* ── Neutral Whites ── */
+  --white: #FFFFFF;
+  --text-primary: #FAFAFA;
+  --text-secondary: #A1A1AA;
+  --text-tertiary: #71717A;
+  --text-muted: #52525B;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: hsla(var(--hue-base), 85%, 60%, 0.4);
+
+  /* ── Animated Gradient ── */
+  --gradient-text: linear-gradient(135deg, var(--color-main-light), var(--color-accent), var(--color-main));
+  --glass: rgba(10, 10, 12, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+
+  /* ── Typography ── */
+  --font-heading: 'Outfit', 'Inter', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ── Spacing ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  --section-padding: clamp(100px, 15vw, 200px);
+  --radius-sm: 2px;
+  --radius: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+  --radius-full: 4px;
+  /* Forcefully reduced */
+
+  /* ── Layout ── */
+  --nav-h: 80px;
+  --container: 1200px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ── Elite Purple-Black Shifting Animation ── */
+@keyframes globalHueShift {
+  0% {
+    --hue-base: 265;
+  }
+
+  50% {
+    --hue-base: 275;
+  }
+
+  100% {
+    --hue-base: 265;
   }
 }
 
+:root {
+  animation: globalHueShift 15s ease-in-out infinite;
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--bg);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-main-dark);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-main);
+}
+
+/* ── Typography ── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: var(--space-6);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+}
+
+p {
+  color: var(--text-secondary);
+  max-width: 65ch;
+  line-height: 1.8;
 }
 
 a {
@@ -42,8 +184,177 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ── Container ── */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* ── Label / Dynamic Classes ── */
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  padding-bottom: var(--space-2);
+  display: inline-block;
+}
+
+/* Dynamic shifting utility classes */
+.color-shift-text {
+  color: var(--color-main-light);
+  transition: color 0.5s ease;
+}
+
+.color-shift-bg {
+  background: var(--color-main);
+  transition: background 0.5s ease;
+}
+
+.color-shift-stroke {
+  stroke: var(--color-main);
+  transition: stroke 0.5s ease;
+}
+
+.color-shift-fill {
+  fill: var(--color-main);
+  transition: fill 0.5s ease;
+}
+
+/* ── Gradient Text ── */
+.gradient-text {
+  background: var(--gradient-text);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s ease infinite;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 10px 24px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.btn-primary {
+  background: var(--color-main-dark);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--color-main);
+  box-shadow: 0 0 40px hsla(var(--hue-base), 85%, 60%, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  color: var(--text-primary);
+  border-color: var(--color-main);
+  background: hsla(var(--hue-base), 85%, 60%, 0.1);
+}
+
+.btn-lg {
+  padding: 12px 32px;
+  font-size: 0.9375rem;
+}
+
+/* ── Animations ── */
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
   }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    box-shadow: 0 0 8px var(--color-main);
+  }
+
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 16px var(--color-main);
+  }
+}
+
+@keyframes scroll-line {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+}
+
+/* ── FORCE SQUARED BUTTONS GLOBALLY ── */
+button,
+a.btn,
+.btn, 
+.btn-primary, 
+.btn-outline,
+.btn-lg,
+[class*="btn"],
+[class*="Button"] {
+  border-radius: 25px !important;
 }
