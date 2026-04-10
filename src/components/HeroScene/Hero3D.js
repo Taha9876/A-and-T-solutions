@@ -110,13 +110,15 @@ function CircularParticles({ count = 10000 }) {
     const phaseIndex = Math.floor((t % (phaseDuration * 3)) / phaseDuration) % 3;
     const currentTarget = targets[phaseIndex];
 
-    // Responsive Camera and Vertical Positioning
+    // Responsive Camera and Horizontal Balancing
     const isMobile = state.size.width < 768;
     const cameraZ = isMobile ? 15 : 10;
-    const cameraY = isMobile ? 2.5 : -1;
+    const cameraY = isMobile ? 2.5 : -0.5;
+    const sceneX = isMobile ? 0 : -3; /* Shift particles Left on Desktop */
     
     state.camera.position.z = THREE.MathUtils.lerp(state.camera.position.z, cameraZ, 0.05);
     state.camera.position.y = THREE.MathUtils.lerp(state.camera.position.y, cameraY, 0.05);
+    mesh.current.position.x = THREE.MathUtils.lerp(mesh.current.position.x, sceneX, 0.05);
     state.camera.updateProjectionMatrix();
 
     let masterAssembly = 0;

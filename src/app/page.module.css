@@ -90,6 +90,7 @@
 }
 
 .heroText {
+  grid-column: 2; /* Position on the Right */
   max-width: 580px;
   pointer-events: auto;
 }
