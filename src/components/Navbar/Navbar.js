@@ -49,6 +49,11 @@ export default function Navbar() {
           <span className={styles.logoText}>Solutions</span>
         </Link>
 
+        <div 
+          className={`${styles.backdrop} ${menuOpen ? styles.backdropOpen : ''}`} 
+          onClick={() => setMenuOpen(false)}
+        />
+
         <div className={`${styles.links} ${menuOpen ? styles.linksOpen : ''}`}>
           {navLinks.map((link, index) => (
             <Link
